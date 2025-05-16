@@ -70,53 +70,61 @@ class _QuotesPageState extends State<QuotesPage> {
             itemBuilder: (context, index) {
               final isFav = favoriteIndices.contains(index);
               return Center(
-                child: Padding(
-                  padding: const EdgeInsets.all(24.0),
-                  child: Card(
-                    elevation: 10,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(25),
-                    ),
-                    color: Colors.white.withOpacity(0.9),
-                    child: Padding(
-                      padding: const EdgeInsets.all(28.0),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const Icon(Icons.format_quote, size: 40, color: Colors.deepPurple),
-                          const SizedBox(height: 20),
-                          Text(
-                            quotes[index],
-                            textAlign: TextAlign.center,
-                            style: const TextStyle(
-                              fontSize: 22,
-                              fontStyle: FontStyle.italic,
-                              color: Colors.deepPurple,
-                            ),
-                          ),
-                          const SizedBox(height: 30),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              IconButton(
-                                icon: Icon(
-                                  isFav ? Icons.favorite : Icons.favorite_border,
-                                  color: Colors.pink,
-                                ),
-                                onPressed: () => toggleFavorite(index),
-                              ),
-                              const SizedBox(width: 20),
-                              IconButton(
-                                icon: const Icon(Icons.share, color: Colors.deepPurple),
-                                onPressed: () => shareQuote(quotes[index]),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
+               child: Padding(
+  padding: const EdgeInsets.all(24.0),
+  child: Center(
+    child: ConstrainedBox(
+      constraints: const BoxConstraints(
+        maxWidth: 800, // Set a max width suitable for web
+      ),
+      child: Card(
+        elevation: 10,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(25),
+        ),
+        color: Colors.white.withOpacity(0.9),
+        child: Padding(
+          padding: const EdgeInsets.all(28.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Icon(Icons.format_quote, size: 40, color: Colors.deepPurple),
+              const SizedBox(height: 20),
+              Text(
+                quotes[index],
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                  fontSize: 22,
+                  fontStyle: FontStyle.italic,
+                  color: Colors.deepPurple,
                 ),
+              ),
+              const SizedBox(height: 30),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  IconButton(
+                    icon: Icon(
+                      isFav ? Icons.favorite : Icons.favorite_border,
+                      color: Colors.pink,
+                    ),
+                    onPressed: () => toggleFavorite(index),
+                  ),
+                  const SizedBox(width: 20),
+                  IconButton(
+                    icon: const Icon(Icons.share, color: Colors.deepPurple),
+                    onPressed: () => shareQuote(quotes[index]),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+    ),
+  ),
+),
+
               );
             },
           ),
