@@ -127,7 +127,7 @@ class _PlannerPageState extends State<PlannerPage> {
                     });
                     saveData();
                   },
-                  child: const Text("Clear Winning Tasks"),
+                  child: const Text("Done"),
                 ),
               ],
             ),
@@ -142,77 +142,82 @@ class _PlannerPageState extends State<PlannerPage> {
     }
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
+@override
+Widget build(BuildContext context) {
+  return Container(
+    color: const Color(0xFFEDE7F6), // Soft purple background
+    child: Scaffold(
+      backgroundColor: Colors.transparent, // Keep scaffold transparent
       appBar: AppBar(
         title: const Text("📝 Planner"),
         backgroundColor: Colors.deepPurple,
         foregroundColor: Colors.white,
       ),
-     body: Center(
-  child: ConstrainedBox(
-    constraints: const BoxConstraints(maxWidth: 600), // max width for web
-    child: Padding(
-      padding: const EdgeInsets.all(20.0),
-      child: GridView.builder(
-        itemCount: 9,
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 3,
-          crossAxisSpacing: 10,
-          mainAxisSpacing: 10,
-        ),
-        itemBuilder: (context, index) {
-          return GestureDetector(
-            onTap: () => tasks[index].isEmpty
-                ? setTask(index)
-                : toggleCheck(index),
-            child: Card(
-              color: tasks[index].isEmpty
-                  ? Colors.blue[100]
-                  : (isChecked[index]
-                      ? Colors.green[200]
-                      : Colors.grey[100]),
-              child: Stack(
-                children: [
-                  Positioned(
-                    top: 5,
-                    right: 5,
-                    child: Checkbox(
-                      value: isChecked[index],
-                      onChanged: tasks[index].isNotEmpty
-                          ? (bool? value) => toggleCheck(index)
-                          : null,
-                    ),
-                  ),
-                  Center(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 6.0),
-                      child: Text(
-                        tasks[index].isEmpty
-                            ? "Write your plan"
-                            : tasks[index],
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 14,
-                          color: isChecked[index]
-                              ? Colors.green[800]
-                              : Colors.black,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
+      body: Center(
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 600),
+          child: Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: GridView.builder(
+              itemCount: 9,
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 3,
+                crossAxisSpacing: 10,
+                mainAxisSpacing: 10,
               ),
+              itemBuilder: (context, index) {
+                return GestureDetector(
+                  onTap: () => tasks[index].isEmpty
+                      ? setTask(index)
+                      : toggleCheck(index),
+                  child: Card(
+                    color: tasks[index].isEmpty
+                        ? Colors.blue[100]
+                        : (isChecked[index]
+                            ? Colors.green[200]
+                            : Colors.grey[100]),
+                    child: Stack(
+                      children: [
+                        Positioned(
+                          top: 5,
+                          right: 5,
+                          child: Checkbox(
+                            value: isChecked[index],
+                            onChanged: tasks[index].isNotEmpty
+                                ? (bool? value) => toggleCheck(index)
+                                : null,
+                          ),
+                        ),
+                        Center(
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 6.0),
+                            child: Text(
+                              tasks[index].isEmpty
+                                  ? "Write your plan"
+                                  : tasks[index],
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 14,
+                                color: isChecked[index]
+                                    ? Colors.green[800]
+                                    : Colors.black,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              },
             ),
-          );
-        },
+          ),
+        ),
       ),
     ),
-  ),
-),
+  );
+}
 
-    );
-  }
+
 }
