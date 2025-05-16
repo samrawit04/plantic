@@ -150,36 +150,44 @@ class _PlannerPageState extends State<PlannerPage> {
         backgroundColor: Colors.deepPurple,
         foregroundColor: Colors.white,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: GridView.builder(
-          itemCount: 9,
-          gridDelegate:
-              const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
-          itemBuilder: (context, index) {
-            return GestureDetector(
-              onTap: () => tasks[index].isEmpty
-                  ? setTask(index)
-                  : toggleCheck(index),
-              child: Card(
-                color: tasks[index].isEmpty
-                    ? Colors.blue[100]
-                    : (isChecked[index]
-                        ? Colors.green[200]
-                        : Colors.grey[100]),
-                child: Stack(
-                  children: [
-                    Positioned(
-                      top: 5,
-                      right: 5,
-                      child: Checkbox(
-                        value: isChecked[index],
-                        onChanged: tasks[index].isNotEmpty
-                            ? (bool? value) => toggleCheck(index)
-                            : null,
-                      ),
+     body: Center(
+  child: ConstrainedBox(
+    constraints: const BoxConstraints(maxWidth: 600), // max width for web
+    child: Padding(
+      padding: const EdgeInsets.all(20.0),
+      child: GridView.builder(
+        itemCount: 9,
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 3,
+          crossAxisSpacing: 10,
+          mainAxisSpacing: 10,
+        ),
+        itemBuilder: (context, index) {
+          return GestureDetector(
+            onTap: () => tasks[index].isEmpty
+                ? setTask(index)
+                : toggleCheck(index),
+            child: Card(
+              color: tasks[index].isEmpty
+                  ? Colors.blue[100]
+                  : (isChecked[index]
+                      ? Colors.green[200]
+                      : Colors.grey[100]),
+              child: Stack(
+                children: [
+                  Positioned(
+                    top: 5,
+                    right: 5,
+                    child: Checkbox(
+                      value: isChecked[index],
+                      onChanged: tasks[index].isNotEmpty
+                          ? (bool? value) => toggleCheck(index)
+                          : null,
                     ),
-                    Center(
+                  ),
+                  Center(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 6.0),
                       child: Text(
                         tasks[index].isEmpty
                             ? "Write your plan"
@@ -187,19 +195,24 @@ class _PlannerPageState extends State<PlannerPage> {
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
+                          fontSize: 14,
                           color: isChecked[index]
                               ? Colors.green[800]
                               : Colors.black,
                         ),
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-            );
-          },
-        ),
+            ),
+          );
+        },
       ),
+    ),
+  ),
+),
+
     );
   }
 }
