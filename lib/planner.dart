@@ -110,6 +110,7 @@ class _PlannerPageState extends State<PlannerPage> {
 
           showDialog(
             context: context,
+            barrierDismissible: false,
             builder: (_) => AlertDialog(
               title: const Text("🎉 You Win!"),
               content:
