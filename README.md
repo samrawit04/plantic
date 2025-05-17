@@ -1,16 +1,25 @@
-# flutter_exam
+🧠 plantic App
+Welcome to the plantic App — a simple Flutter app designed to inspire and help users stay productive. With planning tools, motivational quotes, and a rewarding interface, this app encourages users to Plan, Tick, and Win!
 
-A new Flutter project.
+✨ Features
+🏠 Home Page: Welcoming image and motivational message.
 
-## Getting Started
+🗓 Planner: Organize your daily tasks and goals.
 
-This project is a starting point for a Flutter application.
+🧠 Quotes: Get inspired with hand-picked motivational quotes.
 
-A few resources to get you started if this is your first Flutter project:
+📱 Navigation Bar: Easily switch between sections using the tab bar.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+📁 Project Structure
+lib/
+├── main.dart         // App entry point with top tab navigation
+├── home.dart         // Home screen with motivational welcome
+├── planner.dart      // Planner screen (to-do or schedule page)
+└── quotes.dart       // Quotes screen for daily inspiration
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+🛠 Getting Started
+Make sure you have Flutter installed. Then:
+git clone https://github.com/samrawit04/plantic.git
+cd plantic
+flutter pub get
+flutter run
